@@ -1,5 +1,6 @@
 import {
   HeaderContainer,
+  NavWrapper,
   HeadNavList,
   HeadNavItem,
   HeadNavLink,
@@ -13,17 +14,19 @@ const navItems = [
 export default function AppBar() {
   return (
     <HeaderContainer>
-      <nav>
-        <HeadNavList>
-          {navItems.map(({ href, text }) => {
-            return (
-              <HeadNavItem key={href}>
-                <HeadNavLink to={href}>{text}</HeadNavLink>
-              </HeadNavItem>
-            );
-          })}
-        </HeadNavList>
-      </nav>
+      <NavWrapper>
+        <nav>
+          <HeadNavList>
+            {navItems.map(({ href, text }) => {
+              return (
+                <HeadNavItem key={href}>
+                  <HeadNavLink to={href}>{text}</HeadNavLink>
+                </HeadNavItem>
+              );
+            })}
+          </HeadNavList>
+        </nav>
+      </NavWrapper>
     </HeaderContainer>
   );
 }

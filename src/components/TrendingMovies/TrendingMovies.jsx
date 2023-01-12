@@ -3,13 +3,15 @@ import { useState, useEffect } from 'react';
 // import PropTypes from 'prop-types';
 // import { animateScroll as scroll } from 'react-scroll';
 
+import {
+  MoviesGalleryWrapper,
+  Title,
+} from 'components/TrendingMovies/TrendingMovies.styled';
+
 import MoviesGalleryList from 'components/MoviesGalleryList/MoviesGalleryList';
-// import Loader from 'components/Loader/Loader';
+import Loader from 'components/Loader/Loader';
 import FetchTrendingMovies from 'services/MoviesApi';
-
 import * as Notify from 'services/Notify';
-
-// const imagesPerPage = 12;
 
 export default function MoviesGallery() {
   const [movies, setMovies] = useState([]);
@@ -18,14 +20,10 @@ export default function MoviesGallery() {
   //   const [prevSearchQuery, setPrevSearchQuery] = useState('');
 
   useEffect(() => {
-    //     if (!searchQuery) {
-    //       return;
-    //     }
-
     async function fetchData() {
       try {
+        setIsLoading(true);
         const response = await FetchTrendingMovies();
-        console.log(response);
         setMovies(response.data.results);
       } catch (error) {
         Notify.NotificationError(`${Notify.ERROR_MESSAGE} ${error.message}`);
@@ -79,10 +77,11 @@ export default function MoviesGallery() {
   }, []);
 
   return (
-    <>
+    <MoviesGalleryWrapper>
+      <Title>Trending today</Title>
       <MoviesGalleryList movies={movies} />
-      {/* {isLoading && <Loader />} */}
-    </>
+      {isLoading && <Loader />}
+    </MoviesGalleryWrapper>
   );
 }
 

@@ -10,8 +10,6 @@ export const HeaderContainer = styled.header`
   justify-content: left;
   align-items: center;
   min-height: 64px;
-  padding-left: 124px;
-  padding-right: 124px;
 
   border-bottom: 2px solid #fd5103;
   background-color: #202025;
@@ -20,12 +18,16 @@ export const HeaderContainer = styled.header`
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12); */
 `;
 
+export const NavWrapper = styled.div`
+  margin-left: auto;
+  margin-right: auto;
+  width: 1440px;
+`;
+
 export const HeadNavList = styled.ul`
   display: flex;
 
   list-style: none;
-  margin-left: auto;
-  margin-right: auto;
 `;
 
 export const HeadNavItem = styled.li`
