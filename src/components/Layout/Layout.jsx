@@ -1,11 +1,12 @@
 import AppBar from 'components/AppBar/AppBar';
-import MoviesGallery from 'components/TrendingMovies/TrendingMovies';
+
+import { Outlet } from 'react-router-dom';
 
 export default function Layout() {
   return (
     <>
       <AppBar />
-      <MoviesGallery />
+      <Outlet />
     </>
   );
 }

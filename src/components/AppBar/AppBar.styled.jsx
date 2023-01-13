@@ -22,6 +22,7 @@ export const NavWrapper = styled.div`
   margin-left: auto;
   margin-right: auto;
   width: 1440px;
+  padding: 0 15px;
 `;
 
 export const HeadNavList = styled.ul`

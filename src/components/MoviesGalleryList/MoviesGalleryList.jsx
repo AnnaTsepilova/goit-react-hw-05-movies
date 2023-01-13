@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { MoviesGalleryContainer } from 'components/TrendingMovies/TrendingMovies.styled';
+import { MoviesGalleryContainer } from 'components/MoviesGalleryList/MoviesGalleryList.styled';
 import MoviesGalleryItem from 'components/MoviesGalleryItem/MoviesGalleryItem';
 
 export default function MoviesGalleryList({ movies }) {

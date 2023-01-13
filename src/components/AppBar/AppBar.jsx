@@ -17,13 +17,11 @@ export default function AppBar() {
       <NavWrapper>
         <nav>
           <HeadNavList>
-            {navItems.map(({ href, text }) => {
-              return (
-                <HeadNavItem key={href}>
-                  <HeadNavLink to={href}>{text}</HeadNavLink>
-                </HeadNavItem>
-              );
-            })}
+            {navItems.map(({ href, text }) => (
+              <HeadNavItem key={href}>
+                <HeadNavLink to={href}>{text}</HeadNavLink>
+              </HeadNavItem>
+            ))}
           </HeadNavList>
         </nav>
       </NavWrapper>
