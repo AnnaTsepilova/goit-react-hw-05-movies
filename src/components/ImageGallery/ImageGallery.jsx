@@ -6,7 +6,7 @@ import { animateScroll as scroll } from 'react-scroll';
 import ImageGalleryList from 'components/ImageGalleryList/ImageGalleryList';
 import Loader from 'components/Loader/Loader';
 import FetchImages from 'services/GalleryApi';
-import Button from 'components/Button/Button';
+import ButtonGoBack from 'components/BackLink/BackLink';
 
 import * as Notify from 'services/Notify';
 
@@ -72,7 +72,7 @@ export default function ImageGallery({ searchQuery, page, loadMore }) {
       <ImageGalleryList images={images} />
       {isLoading && <Loader />}
       {images.length > 0 && images.length < totalImages && (
-        <Button onClick={loadMore} />
+        <ButtonGoBack onClick={loadMore} />
       )}
     </>
   );

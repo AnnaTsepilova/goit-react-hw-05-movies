@@ -1,17 +1,18 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { ImSearch } from 'react-icons/im';
-import * as Notify from 'services/Notify';
 
 import {
-  SearchbarContainer,
+  SearchWrapper,
   SearchForm,
   SearchFormButton,
   SearchFormButtonLabel,
   SearchFormInput,
-} from 'components/Searchbar/Searchbar.styled';
+} from 'components/MoviesSearch/MoviesSearch.styled';
 
-export default function Searchbar({ onSubmit }) {
+import * as Notify from 'services/Notify';
+
+export default function MoviesSearch({ onSubmit }) {
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearchQuery = event => {
@@ -20,34 +21,41 @@ export default function Searchbar({ onSubmit }) {
 
   const handleSubmit = event => {
     event.preventDefault();
+    const form = event.currentTarget;
     if (searchQuery.trim() === '') {
       return Notify.NotificationWarning(Notify.EMPTY_QUERY_MESSAGE);
     }
     onSubmit(searchQuery);
     setSearchQuery('');
+    form.reset();
   };
 
   return (
-    <SearchbarContainer>
+    <SearchWrapper>
       <SearchForm onSubmit={handleSubmit}>
-        <SearchFormButton type="submit">
-          <ImSearch style={{ width: '1.5em', height: '1.5em' }} />
-          <SearchFormButtonLabel>Search</SearchFormButtonLabel>
-        </SearchFormButton>
-
         <SearchFormInput
           type="text"
           name="searchQuery"
           autocomplete="off"
-          placeholder="Search images and photos"
+          placeholder="Search movies"
           value={searchQuery}
           onChange={handleSearchQuery}
         />
+        <SearchFormButton type="submit">
+          <SearchFormButtonLabel>Search</SearchFormButtonLabel>
+          <ImSearch
+            style={{
+              width: '1.5em',
+              height: '1.5em',
+              fill: 'rgb(253, 81, 3)',
+            }}
+          />
+        </SearchFormButton>
       </SearchForm>
-    </SearchbarContainer>
+    </SearchWrapper>
   );
 }
 
-Searchbar.propTypes = {
-  searchQuery: PropTypes.array,
-};
+// MoviesSearch.propTypes = {
+//   response: PropTypes.object,
+// };

@@ -13,9 +13,6 @@ export const HeaderContainer = styled.header`
 
   border-bottom: 2px solid #fd5103;
   background-color: #202025;
-
-  /* box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
-    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12); */
 `;
 
 export const NavWrapper = styled.div`
@@ -39,9 +36,11 @@ export const HeadNavItem = styled.li`
 export const HeadNavLink = styled(NavLink)`
   display: block;
   text-decoration: none;
-  margin-right: 24px;
-  padding-top: 32px;
-  padding-bottom: 32px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 14px 10px;
+  border-radius: 8px;
+
   color: #fcfcfc;
   font-weight: 500;
   font-size: 24px;
@@ -51,10 +50,12 @@ export const HeadNavLink = styled(NavLink)`
 
   &.active {
     color: #fd5103;
+    border: 1px solid rgb(253, 81, 3);
+    box-shadow: rgb(253 81 3) 0px 0px 5px 2px;
   }
 
-  &:hover,
-  &:focus {
-    color: #fd5103;
+  :hover:not(.active),
+  :focus-visible:not(.active) {
+    color: #fe7031;
   }
 `;

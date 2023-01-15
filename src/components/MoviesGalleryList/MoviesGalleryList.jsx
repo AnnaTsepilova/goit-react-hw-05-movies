@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 
 import { MoviesGalleryContainer } from 'components/MoviesGalleryList/MoviesGalleryList.styled';
-import MoviesGalleryItem from 'components/MoviesGalleryItem/MoviesGalleryItem';
+import MovieGalleryItem from 'components/MovieGalleryItem/MovieGalleryItem';
 
 export default function MoviesGalleryList({ movies }) {
   return (
     <MoviesGalleryContainer>
       {movies.map(movie => (
-        <MoviesGalleryItem key={movie.id} movie={movie} />
+        <MovieGalleryItem key={movie.id} movie={movie} />
       ))}
     </MoviesGalleryContainer>
   );

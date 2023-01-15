@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { MoviesGalleryWrapper, Title } from 'components/Home/Home.styled';
+import { MoviesGalleryWrapper, Title } from 'pages/Home/Home.styled';
 
 import MoviesGalleryList from 'components/MoviesGalleryList/MoviesGalleryList';
 import Loader from 'components/Loader/Loader';
-import FetchTrendingMovies from 'services/MoviesApi';
+import { FetchTrendingMovies } from 'services/MoviesApi';
 import * as Notify from 'services/Notify';
 
 export default function Home() {
@@ -28,11 +28,13 @@ export default function Home() {
   }, []);
 
   return (
-    <MoviesGalleryWrapper>
-      <Title>Trending today</Title>
-      <MoviesGalleryList movies={movies} />
-      {isLoading && <Loader />}
-    </MoviesGalleryWrapper>
+    <main>
+      <MoviesGalleryWrapper>
+        <Title>Trending today</Title>
+        <MoviesGalleryList movies={movies} />
+        {isLoading && <Loader />}
+      </MoviesGalleryWrapper>
+    </main>
   );
 }
 

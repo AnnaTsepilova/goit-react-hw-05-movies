@@ -1,35 +1,32 @@
-// import React, { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import 'modern-normalize';
 
-// import PropTypes from 'prop-types';
 import { NotificationContainer } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 
 import Layout from 'components/Layout/Layout';
-import MoviesGallery from 'components/Home/Home';
-// import Movies from 'components/Movies/Movies';
-// import MovieDetails from 'components/MovieDetails/MovieDetails';
+import Home from 'pages/Home/Home';
+import Movies from 'pages/Movies/Movies';
+import MovieDetails from 'components/MovieDetails/MovieDetails';
+import Cast from 'components/Cast/Cast';
+import Reviews from 'components/Reviews/Reviews';
 
 export default function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="/" element={<MoviesGallery />} />
-          <Route path="/movies" element={<p>movies</p>} />
-          {/* <Route path="/movies/:movieId" element={<MovieDetails />} /> */}
-          {/* <Route path="/movies/:movieId/cast" element={<Cast />} /> */}
-          {/* <Route path="/movies/:movieId/reviews" element={<Reviews />} /> */}
-
-          <Route path="*" element={<p>Not found</p>} />
+          <Route index element={<Home />} />
+          <Route path="/movies" element={<Movies />}>
+            <Route path=":movieId" element={<MovieDetails />}>
+              <Route path="cast" element={<Cast />} />
+              <Route path="reviews" element={<Reviews />} />
+            </Route>
+          </Route>
+          <Route path="*" element={<Navigate to={'/'} />} />
         </Route>
       </Routes>
       <NotificationContainer />
     </>
   );
 }
-
-// App.propTypes = {
-//   searchQuery: PropTypes.string,
-//   page: PropTypes.number,
-// };

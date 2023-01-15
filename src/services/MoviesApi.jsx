@@ -9,10 +9,53 @@ async function FetchTrendingMovies() {
   return response;
 }
 
+async function FetchQueryMovies(searchQuery) {
+  const response = await axios.get(
+    `search/movie?api_key=${API_KEY}&query=${searchQuery}&page=1`
+  );
+  return response;
+}
+
+async function FetchMoviesDetails(movie_id) {
+  const response = await axios.get(`movie/${movie_id}?api_key=${API_KEY}`);
+  return response;
+}
+
+async function GetMoviesGenresList() {
+  const response = await axios.get(`genre/movie/list?api_key=${API_KEY}`);
+  return response;
+}
+
+async function GetMovieCast(movie_id) {
+  const response = await axios.get(
+    `movie/${movie_id}/credits?api_key=${API_KEY}`
+  );
+  return response;
+}
+
+// async function GetMovieReviews(review_id) {
+//   const response = await axios.get(`review/${review_id}?api_key=${API_KEY}`);
+//   return response;
+// }
+
+async function GetMovieReviews(movieId) {
+  const response = await axios.get(
+    `movie/${movieId}/reviews?api_key=${API_KEY}`
+  );
+  return response;
+}
+
 // FetchTrendingMovies.propTypes = {
 //   searchQuery: PropTypes.string.isRequired,
 //   page: PropTypes.number.isRequired,
 //   perPage: PropTypes.number.isRequired,
 // };
 
-export default FetchTrendingMovies;
+export {
+  FetchTrendingMovies,
+  FetchQueryMovies,
+  FetchMoviesDetails,
+  GetMoviesGenresList,
+  GetMovieCast,
+  GetMovieReviews,
+};

@@ -1,22 +1,10 @@
 import styled from 'styled-components';
 
-export const HomeContainer = styled.header`
-  top: 0;
-  left: 0;
-  position: sticky;
-  z-index: 1100;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 64px;
-  padding-right: 24px;
-  padding-left: 24px;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  color: #fcfcfc;
-  background-color: #3f51b5;
-  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
-    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+export const SearchWrapper = styled.div`
+  margin-left: auto;
+  margin-right: auto;
+  width: 1440px;
+  padding: 36px 15px 0 15px;
 `;
 
 export const SearchForm = styled.form`
@@ -24,9 +12,12 @@ export const SearchForm = styled.form`
   align-items: center;
   width: 100%;
   max-width: 600px;
-  background-color: #fff;
-  border-radius: 3px;
+  background-color: #202025;
+  border-radius: 4px;
+  outline: none;
   overflow: hidden;
+
+  border: 1px solid rgb(253, 81, 3);
 `;
 
 export const SearchFormButton = styled.button`
@@ -34,14 +25,15 @@ export const SearchFormButton = styled.button`
   width: 48px;
   height: 48px;
   border: 0;
-  /* background-image: url('https://img.icons8.com/ios-filled/50/000000/search--v1.png'); */
   background-size: 50%;
   background-repeat: no-repeat;
   background-position: center;
-  opacity: 0.6;
+  opacity: 0.8;
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   outline: none;
+  border-left: 1px solid rgb(253, 81, 3);
+  background-color: #202025;
 
   &:hover {
     opacity: 1;
@@ -66,11 +58,14 @@ export const SearchFormInput = styled.input`
   font: inherit;
   border: none;
   outline: none;
-  padding-left: 10px;
+  padding-left: 15px;
   padding-right: 4px;
+  background-color: #202025;
+  color: #fcfcfc;
 
   &::placeholder {
     font: inherit;
     font-size: 18px;
+    color: rgba(255, 255, 255, 0.76);
   }
 `;

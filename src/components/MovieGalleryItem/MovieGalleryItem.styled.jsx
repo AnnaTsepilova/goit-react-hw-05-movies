@@ -1,6 +1,7 @@
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const MoviesGalleryCard = styled.li`
+export const MovieGalleryCard = styled.li`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -9,15 +10,21 @@ export const MoviesGalleryCard = styled.li`
   border-radius: 8px;
   overflow: hidden;
   width: 100%;
+  outline: none;
 
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
     transform: scale(1.03);
     border: 1px solid rgb(253, 81, 3);
-    box-shadow: 0px 1px 3px 0px rgb(253, 81, 3), 0px 1px 3px 0px rgb(253, 81, 3),
-      0px 1px 3px 0px rgb(253, 81, 3), 0px 1px 3px 0px rgb(253, 81, 3);
+    box-shadow: rgb(253, 81, 3) 0px 0px 5px 2px;
   }
+`;
+export const LinkWrapper = styled(NavLink)`
+  text-decoration: none;
+  color: #fcfcfc;
 `;
 
 export const MoviePoster = styled.img`
@@ -29,7 +36,7 @@ export const MoviePoster = styled.img`
 
 export const Description = styled.div`
   padding: 0 24px;
-  height: 150px;
+  min-height: 150px;
 `;
 
 export const MovieTitle = styled.h2`
