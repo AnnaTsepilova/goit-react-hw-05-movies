@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import PropTypes from 'prop-types';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useSearchParams } from 'react-router-dom';
 
 import { MoviesGalleryWrapper } from 'pages/Home/Home.styled';
 
@@ -15,6 +15,7 @@ export default function Movies() {
   const [page, setPage] = useState(1);
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  // const [searchParams, setSearchParams] = useSearchParams();
 
   const handleFormSubmit = newSearchQuery => {
     if (searchQuery !== newSearchQuery) {
@@ -22,6 +23,10 @@ export default function Movies() {
     }
     setSearchQuery(newSearchQuery);
   };
+  // const changeSearch = value => {
+  //   setSearchParams(value !== '' ? { search: value } : {});
+  // };
+  // const search = searchParams.get('search') ?? '';
 
   useEffect(() => {
     if (!searchQuery) {
@@ -43,10 +48,12 @@ export default function Movies() {
 
   return (
     <main>
-      <Outlet />
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
       <MoviesSearch onSubmit={handleFormSubmit} />
       <MoviesGalleryWrapper>
-        <MoviesGalleryList movies={movies} page={page} />
+        {movies && <MoviesGalleryList movies={movies} page={page} />}
         {isLoading && <Loader />}
       </MoviesGalleryWrapper>
     </main>

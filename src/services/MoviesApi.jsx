@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
@@ -33,23 +33,12 @@ async function GetMovieCast(movie_id) {
   return response;
 }
 
-// async function GetMovieReviews(review_id) {
-//   const response = await axios.get(`review/${review_id}?api_key=${API_KEY}`);
-//   return response;
-// }
-
 async function GetMovieReviews(movieId) {
   const response = await axios.get(
     `movie/${movieId}/reviews?api_key=${API_KEY}`
   );
   return response;
 }
-
-// FetchTrendingMovies.propTypes = {
-//   searchQuery: PropTypes.string.isRequired,
-//   page: PropTypes.number.isRequired,
-//   perPage: PropTypes.number.isRequired,
-// };
 
 export {
   FetchTrendingMovies,
@@ -59,3 +48,7 @@ export {
   GetMovieCast,
   GetMovieReviews,
 };
+
+GetMovieCast.propTypes = { movieId: PropTypes.number.isRequired };
+FetchMoviesDetails.propTypes = { movieId: PropTypes.number.isRequired };
+FetchQueryMovies.propTypes = { searchQuery: PropTypes.string.isRequired };

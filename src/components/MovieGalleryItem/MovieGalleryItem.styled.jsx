@@ -35,8 +35,9 @@ export const MoviePoster = styled.img`
 `;
 
 export const Description = styled.div`
+  position: relative;
   padding: 0 24px;
-  min-height: 150px;
+  min-height: 135px;
 `;
 
 export const MovieTitle = styled.h2`
@@ -48,9 +49,12 @@ export const MovieTitle = styled.h2`
 `;
 
 export const MovieDateRelease = styled.p`
-  margin-top: 24px;
-  margin-bottom: 24px;
+  position: absolute;
+  bottom: 0;
+  margin-top: 10px;
+  margin-bottom: 20px;
 
   font-size: 16px;
   font-weight: 400;
+  color: #fcfcfcb7;
 `;

@@ -36,4 +36,5 @@ export const Text = styled.p`
   font-size: 16px;
   font-weight: 400;
   line-height: 1.25;
+  color: #fcfcfcb7;
 `;

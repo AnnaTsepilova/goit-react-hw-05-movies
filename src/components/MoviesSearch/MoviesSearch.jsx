@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 import { ImSearch } from 'react-icons/im';
 
@@ -14,9 +15,12 @@ import * as Notify from 'services/Notify';
 
 export default function MoviesSearch({ onSubmit }) {
   const [searchQuery, setSearchQuery] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const handleSearchQuery = event => {
-    setSearchQuery(event.currentTarget.value.toLowerCase());
+    let value = event.currentTarget.value.toLowerCase();
+    setSearchQuery(value);
+    setSearchParams(value !== '' ? { search: value } : {});
   };
 
   const handleSubmit = event => {
@@ -29,6 +33,17 @@ export default function MoviesSearch({ onSubmit }) {
     setSearchQuery('');
     form.reset();
   };
+
+  useEffect(() => {
+    const search = searchParams.get('search') ?? '';
+    console.log('test: ', search, searchQuery);
+    setSearchQuery(search);
+    if (!searchQuery) {
+      return;
+    }
+
+    onSubmit(search);
+  }, [searchQuery]);
 
   return (
     <SearchWrapper>

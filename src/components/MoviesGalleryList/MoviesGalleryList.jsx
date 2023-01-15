@@ -5,11 +5,21 @@ import MovieGalleryItem from 'components/MovieGalleryItem/MovieGalleryItem';
 
 export default function MoviesGalleryList({ movies }) {
   return (
-    <MoviesGalleryContainer>
-      {movies.map(movie => (
-        <MovieGalleryItem key={movie.id} movie={movie} />
-      ))}
-    </MoviesGalleryContainer>
+    <>
+      <MoviesGalleryContainer>
+        {movies.map(movie => (
+          <MovieGalleryItem key={movie.id} movie={movie} />
+        ))}
+      </MoviesGalleryContainer>
+
+      {/* {movies && (
+        <MoviesGalleryContainer>
+          {movies.map(movie => (
+            <MovieGalleryItem key={movie.id} movie={movie} />
+          ))}
+        </MoviesGalleryContainer>
+      )} */}
+    </>
   );
 }
 

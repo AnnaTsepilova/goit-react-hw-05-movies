@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import { Outlet, useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { Outlet, useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useState, useEffect, Suspense } from 'react';
 import * as Notify from 'services/Notify';
 
 import {
@@ -29,6 +29,8 @@ export default function MovieDetails() {
   const [isLoading, setIsLoading] = useState(false);
   const [genres, setGenres] = useState([]);
   const [cast, setCast] = useState([]);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   let moviePosterSrc = require('services/no-poster.png');
   if (movie.poster_path) {
@@ -74,54 +76,51 @@ export default function MovieDetails() {
     fetchData();
   }, [movieId]);
 
-  //   useEffect(() => {
-  //     async function fetchData() {
-  //       try {
-  //         const response = await GetMoviesGenresList();
-  //         // console.log(response);
-  //         setGenres(response.data.genres);
-  //       } catch (error) {
-  //         Notify.NotificationError(`${Notify.ERROR_MESSAGE} ${error.message}`);
-  //       }
-  //     }
-  //     fetchData();
-  //   }, []);
+  const onBtnClick = () => {
+    location.state
+      ? navigate(location.state.pathname + location.state.search)
+      : navigate('/');
+  };
 
   return (
-    <MovieCardContainer>
-      <ButtonGoBack />
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <MovieCard>
-          <MainInfoWrapper>
-            <PosterWrapper>
-              <Poster src={moviePosterSrc} alt={movie.title} width={270} />
-            </PosterWrapper>
-            <Description>
-              <MovieTitle>{movie.title}</MovieTitle>
-              <TextDate>
-                Release date:{' '}
-                {new Date(movie.release_date).toLocaleDateString()}
-              </TextDate>
-              <Text>
-                User Score: {Math.round(movie.vote_average * 1000) / 100}%
-              </Text>
-              <DescrTitle>Overview:</DescrTitle>
-              <Text>{movie.overview}</Text>
-              <DescrTitle>Genres:</DescrTitle>
-              <Text>{genres}</Text>
-            </Description>
-          </MainInfoWrapper>
-          <AddInfoWrapper>
-            <SubTitle>Additional information</SubTitle>
-            <AddInfoLink to={`cast`}>Cast</AddInfoLink>
-            <AddInfoLink to={`reviews`}>Reviews</AddInfoLink>
-          </AddInfoWrapper>
-          <Outlet />
-        </MovieCard>
-      )}
-    </MovieCardContainer>
+    <>
+      <MovieCardContainer>
+        <ButtonGoBack onClick={onBtnClick} />
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <MovieCard>
+            <MainInfoWrapper>
+              <PosterWrapper>
+                <Poster src={moviePosterSrc} alt={movie.title} width={270} />
+              </PosterWrapper>
+              <Description>
+                <MovieTitle>{movie.title}</MovieTitle>
+                <TextDate>
+                  Release date:{' '}
+                  {new Date(movie.release_date).toLocaleDateString()}
+                </TextDate>
+                <Text>
+                  User Score: {Math.round(movie.vote_average * 1000) / 100}%
+                </Text>
+                <DescrTitle>Overview:</DescrTitle>
+                <Text>{movie.overview}</Text>
+                <DescrTitle>Genres:</DescrTitle>
+                <Text>{genres}</Text>
+              </Description>
+            </MainInfoWrapper>
+            <AddInfoWrapper>
+              <SubTitle>Additional information</SubTitle>
+              <AddInfoLink to={`cast`}>Cast</AddInfoLink>
+              <AddInfoLink to={`reviews`}>Reviews</AddInfoLink>
+            </AddInfoWrapper>
+          </MovieCard>
+        )}
+      </MovieCardContainer>
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
+    </>
   );
 }
 

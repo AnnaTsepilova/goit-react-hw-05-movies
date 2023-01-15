@@ -17,7 +17,7 @@ export default function ReviewItem({ review }) {
 ReviewItem.propTypes = {
   review: PropTypes.objectOf(
     PropTypes.shape({
-      author: PropTypes.string,
+      author: PropTypes.object,
       content: PropTypes.string,
     })
   ).isRequired,
