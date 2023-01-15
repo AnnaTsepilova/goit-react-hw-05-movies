@@ -19,7 +19,9 @@ export default function AppBar() {
           <HeadNavList>
             {navItems.map(({ href, text }) => (
               <HeadNavItem key={href}>
-                <HeadNavLink to={href}>{text}</HeadNavLink>
+                <HeadNavLink reloadDocument to={href}>
+                  {text}
+                </HeadNavLink>
               </HeadNavItem>
             ))}
           </HeadNavList>

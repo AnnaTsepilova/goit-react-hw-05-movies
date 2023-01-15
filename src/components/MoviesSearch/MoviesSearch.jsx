@@ -19,17 +19,17 @@ export default function MoviesSearch({ onSubmit }) {
 
   const handleSearchQuery = event => {
     let value = event.currentTarget.value.toLowerCase();
-    setSearchQuery(value);
     setSearchParams(value !== '' ? { search: value } : {});
   };
 
   const handleSubmit = event => {
     event.preventDefault();
     const form = event.currentTarget;
-    if (searchQuery.trim() === '') {
+    let query = form.searchQuery.value.toLowerCase();
+    if (query.trim() === '') {
       return Notify.NotificationWarning(Notify.EMPTY_QUERY_MESSAGE);
     }
-    onSubmit(searchQuery);
+    onSubmit(query);
     setSearchQuery('');
     form.reset();
   };
@@ -53,7 +53,6 @@ export default function MoviesSearch({ onSubmit }) {
           name="searchQuery"
           autocomplete="off"
           placeholder="Search movies"
-          value={searchQuery}
           onChange={handleSearchQuery}
         />
         <SearchFormButton type="submit">
