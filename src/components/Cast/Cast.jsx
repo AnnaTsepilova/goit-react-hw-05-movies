@@ -5,7 +5,7 @@ import * as Notify from 'services/Notify';
 
 import { GetMovieCast } from 'services/MoviesApi';
 import Loader from 'components/Loader/Loader';
-import CastList from 'components/CastList/CastList';
+import CastList from 'components/Cast/CastList/CastList';
 
 export default function Cast() {
   const { movieId } = useParams();

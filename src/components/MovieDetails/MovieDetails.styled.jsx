@@ -4,8 +4,9 @@ import styled from 'styled-components';
 export const MovieCardContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
+
   width: 1440px;
-  padding: 36px 15px 0 15px;
+  padding: 32px 15px;
 `;
 
 export const MovieCard = styled.div`
@@ -60,7 +61,7 @@ export const TextDate = styled(Text)`
 `;
 
 export const AddInfoWrapper = styled(MainInfoWrapper)`
-  padding-top: 32px;
+  padding-top: 36px;
   border-top: 1px solid rgb(253, 81, 3);
   align-items: center;
 `;
@@ -88,7 +89,7 @@ export const AddInfoLink = styled(NavLink)`
 
   &:hover {
     transform: scale(1.03);
-    border: 1px solid rgb(253, 81, 3);
+    border: 1px solid #fd5103;
     box-shadow: rgb(253, 81, 3) 0px 0px 5px 2px;
   }
 `;

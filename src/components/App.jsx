@@ -4,6 +4,7 @@ import 'modern-normalize';
 
 import { NotificationContainer } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
+import Footer from 'components/Footer/Footer';
 
 const Layout = lazy(() => import('components/Layout/Layout'));
 const Home = lazy(() => import('pages/Home/Home'));
@@ -26,6 +27,7 @@ export default function App() {
           <Route path="*" element={<Navigate to={'/'} />} />
         </Route>
       </Routes>
+      <Footer />
       <NotificationContainer />
     </>
   );

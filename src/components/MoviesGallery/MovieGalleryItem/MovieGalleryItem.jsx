@@ -7,7 +7,7 @@ import {
   Description,
   MovieTitle,
   MovieDateRelease,
-} from 'components/MovieGalleryItem/MovieGalleryItem.styled';
+} from 'components/MoviesGallery/MovieGalleryItem/MovieGalleryItem.styled';
 
 export default function MovieGalleryItem({ movie }) {
   const location = useLocation();

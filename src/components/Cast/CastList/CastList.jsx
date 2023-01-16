@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
-import { CastListContainer } from 'components/CastList/CastList.styled';
-import CastItem from 'components/CastItem/CastItem';
+import { CastListContainer } from 'components/Cast/CastList/CastList.styled';
+import CastItem from 'components/Cast/CastItem/CastItem';
 
 export default function CastList({ cast }) {
   return (

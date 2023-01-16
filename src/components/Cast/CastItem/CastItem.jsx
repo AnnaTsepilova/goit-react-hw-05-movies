@@ -6,7 +6,7 @@ import {
   Description,
   CastName,
   Text,
-} from 'components/CastItem/CastItem.styled';
+} from 'components/Cast/CastItem/CastItem.styled';
 
 export default function CastItem({ castInd }) {
   let castPosterSrc = require('services/no-poster.png');

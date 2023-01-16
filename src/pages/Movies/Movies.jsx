@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { Outlet } from 'react-router-dom';
 
 import { MoviesGalleryWrapper } from 'pages/Home/Home.styled';
+import { MoviesPageWrapper } from 'pages/Movies/Movies.styled';
 
 import MoviesSearch from 'components/MoviesSearch/MoviesSearch';
-import MoviesGalleryList from 'components/MoviesGalleryList/MoviesGalleryList';
+import MoviesGalleryList from 'components/MoviesGallery/MoviesGalleryList/MoviesGalleryList';
 import Loader from 'components/Loader/Loader';
 import { FetchQueryMovies } from 'services/MoviesApi';
 import * as Notify from 'services/Notify';
@@ -28,6 +29,10 @@ export default function Movies() {
         setIsLoading(true);
         const response = await FetchQueryMovies(searchQuery);
         setMovies(response.data.results);
+
+        if (!response.data.results.length) {
+          Notify.NotificationError(Notify.NO_FOUND_MESSAGE);
+        }
       } catch (error) {
         Notify.NotificationError(`${Notify.ERROR_MESSAGE} ${error.message}`);
       } finally {
@@ -38,7 +43,7 @@ export default function Movies() {
   }, [searchQuery]);
 
   return (
-    <main>
+    <MoviesPageWrapper>
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
@@ -47,7 +52,7 @@ export default function Movies() {
         {movies && <MoviesGalleryList movies={movies} />}
         {isLoading && <Loader />}
       </MoviesGalleryWrapper>
-    </main>
+    </MoviesPageWrapper>
   );
 }
 

@@ -3,7 +3,7 @@ import {
   ReviewCard,
   AuthorName,
   Text,
-} from 'components/ReviewItem/ReviewItem.styled';
+} from 'components/Reviews/ReviewItem/ReviewItem.styled';
 
 export default function ReviewItem({ review }) {
   return (
@@ -17,7 +17,7 @@ export default function ReviewItem({ review }) {
 ReviewItem.propTypes = {
   review: PropTypes.objectOf(
     PropTypes.shape({
-      author: PropTypes.object,
+      author: PropTypes.string,
       content: PropTypes.string,
     })
   ).isRequired,

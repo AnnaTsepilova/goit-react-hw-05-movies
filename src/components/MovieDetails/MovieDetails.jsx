@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Outlet, useParams, useNavigate, useLocation } from 'react-router-dom';
+import { Outlet, useParams, useLocation } from 'react-router-dom';
 import { useState, useEffect, Suspense } from 'react';
 import * as Notify from 'services/Notify';
 
@@ -29,7 +29,6 @@ export default function MovieDetails() {
   const [isLoading, setIsLoading] = useState(false);
   const [genres, setGenres] = useState([]);
   const [cast, setCast] = useState([]);
-  const navigate = useNavigate();
   const location = useLocation();
 
   let moviePosterSrc = require('services/no-poster.png');
@@ -45,7 +44,6 @@ export default function MovieDetails() {
       try {
         setIsLoading(true);
         const response = await FetchMoviesDetails(movieId);
-        console.log(response);
         setMovie(response.data);
         setGenres(response.data.genres.map(genre => genre.name).join(' '));
       } catch (error) {
@@ -76,16 +74,10 @@ export default function MovieDetails() {
     fetchData();
   }, [movieId]);
 
-  const onBtnClick = () => {
-    location.state
-      ? navigate(location.state.pathname + location.state.search)
-      : navigate('/');
-  };
-
   return (
     <>
       <MovieCardContainer>
-        <ButtonGoBack onClick={onBtnClick} />
+        <ButtonGoBack />
         {isLoading ? (
           <Loader />
         ) : (
@@ -111,8 +103,12 @@ export default function MovieDetails() {
             </MainInfoWrapper>
             <AddInfoWrapper>
               <SubTitle>Additional information</SubTitle>
-              <AddInfoLink to={`cast`}>Cast</AddInfoLink>
-              <AddInfoLink to={`reviews`}>Reviews</AddInfoLink>
+              <AddInfoLink to={`cast`} state={location.state}>
+                Cast
+              </AddInfoLink>
+              <AddInfoLink to={`reviews`} state={location.state}>
+                Reviews
+              </AddInfoLink>
             </AddInfoWrapper>
           </MovieCard>
         )}

@@ -2,9 +2,9 @@ import { BackLink } from 'components/BackLink/BackLink.styled';
 import { HiArrowNarrowLeft } from 'react-icons/hi';
 import { useLocation } from 'react-router-dom';
 
-export default function ButtonGoBack() {
+export default function ButtonGoBack(onClick) {
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/';
+  const backLinkHref = location.state?.from ?? '/movies';
 
   return (
     <BackLink to={backLinkHref}>

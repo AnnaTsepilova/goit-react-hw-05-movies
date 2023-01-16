@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { ImSearch } from 'react-icons/im';
 
 import {
@@ -36,7 +36,6 @@ export default function MoviesSearch({ onSubmit }) {
 
   useEffect(() => {
     const search = searchParams.get('search') ?? '';
-    console.log('test: ', search, searchQuery);
     setSearchQuery(search);
     if (!searchQuery) {
       return;
@@ -70,6 +69,7 @@ export default function MoviesSearch({ onSubmit }) {
   );
 }
 
-// MoviesSearch.propTypes = {
-//   response: PropTypes.object,
-// };
+MoviesSearch.propTypes = {
+  searchQuery: PropTypes.string,
+  onSubmit: PropTypes.func,
+};

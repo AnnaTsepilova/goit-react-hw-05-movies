@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { MoviesGalleryWrapper, Title } from 'pages/Home/Home.styled';
 
-import MoviesGalleryList from 'components/MoviesGalleryList/MoviesGalleryList';
+import MoviesGalleryList from 'components/MoviesGallery/MoviesGalleryList/MoviesGalleryList';
 import Loader from 'components/Loader/Loader';
 import { FetchTrendingMovies } from 'services/MoviesApi';
 import * as Notify from 'services/Notify';

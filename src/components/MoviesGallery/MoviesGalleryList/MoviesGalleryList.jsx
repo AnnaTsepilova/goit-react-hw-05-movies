@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
-import { MoviesGalleryContainer } from 'components/MoviesGalleryList/MoviesGalleryList.styled';
-import MovieGalleryItem from 'components/MovieGalleryItem/MovieGalleryItem';
+import { MoviesGalleryContainer } from 'components/MoviesGallery/MoviesGalleryList/MoviesGalleryList.styled';
+import MovieGalleryItem from 'components/MoviesGallery/MovieGalleryItem/MovieGalleryItem';
 
 export default function MoviesGalleryList({ movies }) {
   return (
@@ -11,14 +11,6 @@ export default function MoviesGalleryList({ movies }) {
           <MovieGalleryItem key={movie.id} movie={movie} />
         ))}
       </MoviesGalleryContainer>
-
-      {/* {movies && (
-        <MoviesGalleryContainer>
-          {movies.map(movie => (
-            <MovieGalleryItem key={movie.id} movie={movie} />
-          ))}
-        </MoviesGalleryContainer>
-      )} */}
     </>
   );
 }

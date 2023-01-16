@@ -5,7 +5,7 @@ import * as Notify from 'services/Notify';
 
 import { GetMovieReviews } from 'services/MoviesApi';
 import Loader from 'components/Loader/Loader';
-import ReviewsList from 'components/ReviewsList/ReviewsList';
+import ReviewsList from 'components/Reviews/ReviewsList/ReviewsList';
 
 export default function Reviews() {
   const { movieId } = useParams();
