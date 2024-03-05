@@ -1,7 +1,6 @@
-import PropTypes from 'prop-types';
 import { Outlet, useParams, useLocation } from 'react-router-dom';
 import { useState, useEffect, Suspense } from 'react';
-import * as Notify from 'services/Notify';
+import * as notify from 'services/notifications';
 
 import {
   MovieCardContainer,
@@ -19,16 +18,15 @@ import {
   AddInfoLink,
 } from 'components/MovieDetails/MovieDetails.styled';
 
-import { FetchMoviesDetails, GetMovieCast } from 'services/MoviesApi';
+import { getMoviesDetails } from 'services/moviesApi';
 import ButtonGoBack from 'components/BackLink/BackLink';
 import Loader from 'components/Loader/Loader';
 
-export default function MovieDetails() {
+const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [genres, setGenres] = useState([]);
-  const [cast, setCast] = useState([]);
   const location = useLocation();
 
   let moviePosterSrc = require('services/no-poster.png');
@@ -43,30 +41,11 @@ export default function MovieDetails() {
     async function fetchData() {
       try {
         setIsLoading(true);
-        const response = await FetchMoviesDetails(movieId);
-        setMovie(response.data);
-        setGenres(response.data.genres.map(genre => genre.name).join(' '));
+        const { data } = await getMoviesDetails(movieId);
+        setMovie(data);
+        setGenres(data.genres.map(genre => genre.name).join(' '));
       } catch (error) {
-        Notify.NotificationError(`${Notify.ERROR_MESSAGE} ${error.message}`);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    fetchData();
-  }, [movieId]);
-
-  useEffect(() => {
-    if (!movieId) {
-      return;
-    }
-    async function fetchData() {
-      try {
-        setIsLoading(true);
-        const response = await GetMovieCast(movieId);
-
-        setCast(response.data.cast.map(cast => cast));
-      } catch (error) {
-        Notify.NotificationError(`${Notify.ERROR_MESSAGE} ${error.message}`);
+        notify.notificationError(`${notify.ERROR_MESSAGE} ${error.message}`);
       } finally {
         setIsLoading(false);
       }
@@ -118,17 +97,6 @@ export default function MovieDetails() {
       </Suspense>
     </>
   );
-}
-
-MovieDetails.propTypes = {
-  movieId: PropTypes.number,
-  movie: PropTypes.objectOf(
-    PropTypes.shape({
-      poster_path: PropTypes.string,
-      title: PropTypes.string,
-      release_date: PropTypes.string,
-      vote_average: PropTypes.number,
-      overview: PropTypes.string,
-    })
-  ),
 };
+
+export default MovieDetails;

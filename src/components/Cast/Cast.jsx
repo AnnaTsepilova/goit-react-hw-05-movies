@@ -1,16 +1,19 @@
-import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import * as Notify from 'services/Notify';
+import * as notify from 'services/notifications';
 
-import { GetMovieCast } from 'services/MoviesApi';
+import { getMovieCast } from 'services/moviesApi';
 import Loader from 'components/Loader/Loader';
-import CastList from 'components/Cast/CastList/CastList';
+import CastList from 'components/CastList/CastList';
 
-export default function Cast() {
+const Cast = () => {
   const { movieId } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [cast, setCast] = useState([]);
+  const [castLimited, setCastLimited] = useState([]);
+  const [showLoadMore, setShowLoadMore] = useState(false);
+
+  const castItemsLimit = 12;
 
   useEffect(() => {
     if (!movieId) {
@@ -19,10 +22,16 @@ export default function Cast() {
     async function fetchData() {
       try {
         setIsLoading(true);
-        const response = await GetMovieCast(movieId);
-        setCast(response.data.cast);
+        const { data } = await getMovieCast(movieId);
+        if (data.cast.length) {
+          setCast(data.cast);
+          setCastLimited(data.cast.slice(0, castItemsLimit));
+          setShowLoadMore(castItemsLimit <= data.cast.length);
+        } else {
+          notify.notificationError(notify.NO_FOUND_CAST);
+        }
       } catch (error) {
-        Notify.NotificationError(`${Notify.ERROR_MESSAGE} ${error.message}`);
+        notify.notificationError(`${notify.ERROR_MESSAGE} ${error.message}`);
       } finally {
         setIsLoading(false);
       }
@@ -30,10 +39,25 @@ export default function Cast() {
     fetchData();
   }, [movieId]);
 
-  return <>{isLoading ? <Loader /> : <CastList cast={cast} />}</>;
-}
+  function handleClickLoadMoreCast() {
+    const loadMoreAcc = castLimited.length + castItemsLimit;
+    setCastLimited(cast.slice(0, loadMoreAcc));
+    setShowLoadMore(!(loadMoreAcc >= cast.length));
+  }
 
-Cast.propTypes = {
-  movieId: PropTypes.number,
-  cast: PropTypes.object,
+  return (
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <CastList
+          cast={castLimited}
+          showLoadMore={showLoadMore}
+          handleClickLoadMore={handleClickLoadMoreCast}
+        />
+      )}
+    </>
+  );
 };
+
+export default Cast;

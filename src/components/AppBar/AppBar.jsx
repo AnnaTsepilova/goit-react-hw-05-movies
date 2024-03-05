@@ -11,7 +11,7 @@ const navItems = [
   { href: 'movies', text: 'Movies' },
 ];
 
-export default function AppBar() {
+const AppBar = () => {
   return (
     <HeaderContainer>
       <NavWrapper>
@@ -29,4 +29,6 @@ export default function AppBar() {
       </NavWrapper>
     </HeaderContainer>
   );
-}
+};
+
+export default AppBar;

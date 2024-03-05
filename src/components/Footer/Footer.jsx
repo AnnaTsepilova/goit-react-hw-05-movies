@@ -5,11 +5,11 @@ import {
   FooterIcon,
 } from 'components/Footer/Footer.styled';
 
-export default function Footer() {
+const Footer = () => {
   return (
     <FooterContainer>
       <FooterDataWrapper>
-        <FooterDataText>Copyright © 2023 | Developed by</FooterDataText>
+        <FooterDataText>Copyright © 2024 | Developed by</FooterDataText>
         <a
           target="_blank"
           rel="noopener noreferrer"
@@ -20,4 +20,6 @@ export default function Footer() {
       </FooterDataWrapper>
     </FooterContainer>
   );
-}
+};
+
+export default Footer;

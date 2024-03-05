@@ -17,6 +17,9 @@ body {
     Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
   color: #fcfcfc;
   background-color: #202025;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

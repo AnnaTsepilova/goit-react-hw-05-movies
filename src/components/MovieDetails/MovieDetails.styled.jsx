@@ -50,9 +50,6 @@ export const DescrTitle = styled.h3`
 
 export const Text = styled.p`
   margin-top: 14px;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.25;
   color: #fcfcfcb7;
 `;
 
@@ -76,8 +73,6 @@ export const AddInfoLink = styled(NavLink)`
   margin-right: 16px;
   padding: 10px 16px;
   font-size: 18px;
-  font-weight: 400;
-  line-height: 1.25;
   color: #fcfcfc;
   outline: none;
   border: 1px solid #e3e3e3;
@@ -87,6 +82,7 @@ export const AddInfoLink = styled(NavLink)`
     border 250ms cubic-bezier(0.4, 0, 0.2, 1),
     box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
+  &.active,
   &:hover {
     transform: scale(1.03);
     border: 1px solid #fd5103;

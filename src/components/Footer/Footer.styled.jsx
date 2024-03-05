@@ -24,8 +24,7 @@ export const FooterDataWrapper = styled.div`
 export const FooterDataText = styled.p`
   margin-right: 10px;
   font: inherit;
-  font-size: 16px;
-  font-weight: 400;
+
   letter-spacing: 0.03em;
 
   text-align: center;

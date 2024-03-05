@@ -1,13 +1,12 @@
-import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import * as Notify from 'services/Notify';
+import * as notify from 'services/notifications';
 
-import { GetMovieReviews } from 'services/MoviesApi';
+import { getMovieReviews } from 'services/moviesApi';
 import Loader from 'components/Loader/Loader';
-import ReviewsList from 'components/Reviews/ReviewsList/ReviewsList';
+import ReviewsList from 'components/ReviewsList/ReviewsList';
 
-export default function Reviews() {
+const Reviews = () => {
   const { movieId } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [reviews, setReviews] = useState([]);
@@ -19,14 +18,14 @@ export default function Reviews() {
     async function fetchData() {
       try {
         setIsLoading(true);
-        const response = await GetMovieReviews(movieId);
-        if (response.data.results.length) {
-          setReviews(response.data.results);
+        const { data } = await getMovieReviews(movieId);
+        if (data.results.length) {
+          setReviews(data.results);
         } else {
-          Notify.NotificationError(Notify.NO_FOUND_REVIEWS);
+          notify.notificationError(notify.NO_FOUND_REVIEWS);
         }
       } catch (error) {
-        Notify.NotificationError(`${Notify.ERROR_MESSAGE} ${error.message}`);
+        notify.notificationError(`${notify.ERROR_MESSAGE} ${error.message}`);
       } finally {
         setIsLoading(false);
       }
@@ -35,8 +34,6 @@ export default function Reviews() {
   }, [movieId]);
 
   return <>{isLoading ? <Loader /> : <ReviewsList reviews={reviews} />}</>;
-}
-
-Reviews.propTypes = {
-  movie: PropTypes.object,
 };
+
+export default Reviews;

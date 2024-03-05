@@ -1,6 +1,3 @@
-import { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { ImSearch } from 'react-icons/im';
 
 import {
@@ -11,48 +8,15 @@ import {
   SearchFormInput,
 } from 'components/MoviesSearch/MoviesSearch.styled';
 
-import * as Notify from 'services/Notify';
-
-export default function MoviesSearch({ onSubmit }) {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const handleSearchQuery = event => {
-    let value = event.currentTarget.value.toLowerCase();
-    setSearchParams(value !== '' ? { search: value } : {});
-  };
-
-  const handleSubmit = event => {
-    event.preventDefault();
-    const form = event.currentTarget;
-    let query = form.searchQuery.value.toLowerCase();
-    if (query.trim() === '') {
-      return Notify.NotificationWarning(Notify.EMPTY_QUERY_MESSAGE);
-    }
-    onSubmit(query);
-    setSearchQuery('');
-    form.reset();
-  };
-
-  useEffect(() => {
-    const search = searchParams.get('search') ?? '';
-    setSearchQuery(search);
-    if (!searchQuery) {
-      return;
-    }
-
-    onSubmit(search);
-  }, [searchQuery]);
-
+const MoviesSearch = ({ onHandleSubmit }) => {
   return (
     <SearchWrapper>
-      <SearchForm onSubmit={handleSubmit}>
+      <SearchForm onSubmit={onHandleSubmit}>
         <SearchFormInput
           type="text"
           name="searchQuery"
-          autocomplete="off"
+          autoComplete="off"
           placeholder="Search movies"
-          onChange={handleSearchQuery}
         />
         <SearchFormButton type="submit">
           <SearchFormButtonLabel>Search</SearchFormButtonLabel>
@@ -67,9 +31,6 @@ export default function MoviesSearch({ onSubmit }) {
       </SearchForm>
     </SearchWrapper>
   );
-}
-
-MoviesSearch.propTypes = {
-  searchQuery: PropTypes.string,
-  onSubmit: PropTypes.func,
 };
+
+export default MoviesSearch;

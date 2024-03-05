@@ -17,8 +17,6 @@ export const BackLink = styled(NavLink)`
   text-decoration: none;
 
   font-size: 18px;
-  font-weight: 400;
-  line-height: 1.25;
   color: #fcfcfc;
   background-color: #202025;
 

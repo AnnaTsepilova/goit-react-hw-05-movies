@@ -1,10 +1,8 @@
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import { lazy } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import 'modern-normalize';
 
-import { NotificationContainer } from 'react-notifications';
-import 'react-notifications/lib/notifications.css';
-import Footer from 'components/Footer/Footer';
+import Footer from './Footer/Footer';
 
 const Layout = lazy(() => import('components/Layout/Layout'));
 const Home = lazy(() => import('pages/Home/Home'));
@@ -13,7 +11,7 @@ const MovieDetails = lazy(() => import('components/MovieDetails/MovieDetails'));
 const Cast = lazy(() => import('components/Cast/Cast'));
 const Reviews = lazy(() => import('components/Reviews/Reviews'));
 
-export default function App() {
+const App = () => {
   return (
     <>
       <Routes>
@@ -28,7 +26,9 @@ export default function App() {
         </Route>
       </Routes>
       <Footer />
-      <NotificationContainer />
+      <ToastContainer />
     </>
   );
-}
+};
+
+export default App;

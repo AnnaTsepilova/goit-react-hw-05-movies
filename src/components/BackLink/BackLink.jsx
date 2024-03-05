@@ -2,7 +2,7 @@ import { BackLink } from 'components/BackLink/BackLink.styled';
 import { HiArrowNarrowLeft } from 'react-icons/hi';
 import { useLocation } from 'react-router-dom';
 
-export default function ButtonGoBack(onClick) {
+const ButtonGoBack = onClick => {
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/movies';
 
@@ -14,4 +14,6 @@ export default function ButtonGoBack(onClick) {
       Go back
     </BackLink>
   );
-}
+};
+
+export default ButtonGoBack;
