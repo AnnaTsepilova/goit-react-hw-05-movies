@@ -1,48 +1,47 @@
-## Кінопошук
+## Movie Search
 
-Створений застосунок пошуку фільмів.
+An application designed for searching movies.
 
 ## themoviedb.org API
 
-Бекенд [themoviedb.org API](https://www.themoviedb.org/). У цій роботі
-використані наступні ендпоінти.
+Backend [themoviedb.org API](https://www.themoviedb.org/). The following
+endpoints are used in this project:
 
 - [/trending/get-trending](https://developers.themoviedb.org/3/trending/get-trending)
-  список найпопулярніших фільмів на сьогодні для створення колекції на головній
-  сторінці.
+  fetches a list of trending movies for today to populate the collection on the
+  home page.
 - [/search/search-movies](https://developers.themoviedb.org/3/search/search-movies)
-  пошук фільму за ключовим словом на сторінці фільмів.
+  searches for movies by keyword on the movie page.
 - [/movies/get-movie-details](https://developers.themoviedb.org/3/movies/get-movie-details)
-  запит повної інформації про фільм для сторінки кінофільму.
+  fetches full information about a movie for the movie details page.
 - [/movies/get-movie-credits](https://developers.themoviedb.org/3/movies/get-movie-credits)
-  запит інформації про акторський склад для сторінки кінофільму.
+  fetches information about the cast for the movie details page.
 - [/movies/get-movie-reviews](https://developers.themoviedb.org/3/movies/get-movie-reviews)
-  запит оглядів для сторінки кінофільму.
+  fetches reviews for the movie details page.
 
 [Посилання на документацію](https://developers.themoviedb.org/3/getting-started/introduction)
 
-## Маршрути
+## Routes
 
-У застосунку є наступні маршрути. Якщо користувач зайшов за неіснуючим
-маршрутом, його буде перенаправено на домашню сторінку.
+The application has the following routes. If a user visits a non-existent route,
+they will be redirected to the home page.
 
-- `'/'` – компонент `<HomePage>`, домашня сторінка зі списком популярних
-  кінофільмів.
-- `'/movies'` – компонент `<MoviesPage>`, сторінка пошуку кінофільмів за
-  ключовим словом.
-- `'/movies/:movieId'` – компонент `<MovieDetailsPage>`, сторінка з детальною
-  інформацією про кінофільм.
-- `/movies/:movieId/cast` – компонент `<Cast>`, інформація про акторський склад.
-  Рендериться на сторінці `<MovieDetailsPage>`.
-- `/movies/:movieId/reviews` – компонент `<Reviews>`, інформація про огляди.
-  Рендериться на сторінці `<MovieDetailsPage>`.
+- `'/'` - component `<HomePage>`, the home page with a list of popular movies.
+- `'/movies'` - component `<MoviesPage>`, the page for searching movies by
+  keyword.
+- `'/movies/:movieId'` - component `<MovieDetailsPage>`, the page with detailed
+  information about a movie.
+- `/movies/:movieId/cast` - component `<Cast>`, information about the cast.
+  Rendered on the `<MovieDetailsPage>`.
+- `/movies/:movieId/reviews` - component `<Reviews>`, information about reviews.
+  Rendered on the `<MovieDetailsPage>`.
 
-## Code Splitting (поділ коду)
+## Code Splitting
 
-Додано асинхронне завантаження JS-коду для маршрутів застосунку, використовуючи
+Added asynchronous loading of JS code for application routes using
 `React.lazy()` і `Suspense`.
 
-### Фінальний результат
+### Final Result
 
 ![screencapture](./assets/screencapture_1.png)
 ![screencapture](./assets/screencapture_2.png)
