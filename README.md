@@ -19,7 +19,7 @@ endpoints are used in this project:
 - [/movies/get-movie-reviews](https://developers.themoviedb.org/3/movies/get-movie-reviews)
   fetches reviews for the movie details page.
 
-[Посилання на документацію](https://developers.themoviedb.org/3/getting-started/introduction)
+[Documentation Link](https://developers.themoviedb.org/3/getting-started/introduction)
 
 ## Routes
 
